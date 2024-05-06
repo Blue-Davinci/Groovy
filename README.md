@@ -91,7 +91,7 @@ Before you can run or contribute to this project, you'll need to have the follow
 7. **Run the project:** Instead of using `go run`, you can use the `make` command with the `run/api` target to run the project:
 
     ```bash
-  make run/api
+    make run/api
     ```
 8. For additional supported commands run `make help`:
 
