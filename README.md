@@ -16,7 +16,7 @@
 
 ---
 
-<p align="center"> Few lines describing your project.
+<p align="center"> A GOLANG BACK END CODE FOR THE GROOVY API.
     <br> 
 </p>
 
