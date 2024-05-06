@@ -204,7 +204,7 @@ FAIL    groovy/cmd/api  0.398s
 
 ## ✍️ Authors <a name = "authors"></a>
 
-- [@blue-davinci](https://github.com/blue-davinci) - Entire project work
+- [@blue-davinci](https://github.com/blue-davinci) - The Groovy API
 
 
 ## 🎉 Acknowledgements <a name = "acknowledgement"></a>
