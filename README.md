@@ -29,7 +29,6 @@
 - [Built Using](#built_using)
 - [API Endpoints](#endpoints)
 - [TODO](./TODO.md)
-- [Contributing](../CONTRIBUTING.md)
 - [Authors](#authors)
 - [Acknowledgments](#acknowledgement)
 
