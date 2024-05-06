@@ -187,11 +187,11 @@ FAIL    groovy/cmd/api  0.398s
 
 ## 🎈 Usage <a name="usage"></a>
 
-Add notes about how to use the system.
+{to add}
 
 ## 🚀 Deployment <a name = "deployment"></a>
 
-Add additional notes about how to deploy this on a live system.
+{to add}
 
 ## ⛏️ Built Using <a name = "built_using"></a>
 
