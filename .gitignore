@@ -1,3 +1,4 @@
 bin/
-cmd/api/.env
-cmd/api/*.exe
+/cmd/api/.env
+/cmd/api/*.exe
+/cmd/api/main.go
