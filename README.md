@@ -190,7 +190,22 @@ FAIL    groovy/cmd/api  0.398s
 
 ## 🚀 Deployment <a name = "deployment"></a>
 
-{to add}
+This application can be deployed using Docker and Docker Compose. Here are the steps to do so:
+
+1. **Build the Docker image**: Run `docker build -t groovy .` while in the root directory .
+
+2. **Run the Docker Compose services**: Run `docker-compose up` while in the root dir.
+
+If you want to run the services in the background, you can use the `-d` option: `docker-compose up -d`.
+Please remember you can use flags, mentioned [here](#deployment) while running the api by setting them in
+the `Dockerfile` like so:
+```
+CMD ["./bin/api.exe", "-smtp-username", "smtp username", "-port", "your_port", "-smtp-password", "your_smtp_pass"]
+```
+
+Remember to replace `groovy` with the name you want to give to your Docker image. If you're pushing to Docker Hub, the image name should be in the format `username/repository:tag`, where `username` is your Docker Hub username, `repository` is the name you want to give to your Docker repository, and `tag` is the tag you want to give to this version of the image. If you don't specify a tag, Docker will use `latest` by default.
+
+Please note that you need to have Docker and Docker Compose installed on your machine to deploy the application this way. You can download Docker [here](https://www.docker.com/products/docker-desktop) and find installation instructions for Docker Compose [here](https://docs.docker.com/compose/install/).
 
 ## ⛏️ Built Using <a name = "built_using"></a>
 
