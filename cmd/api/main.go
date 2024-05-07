@@ -9,6 +9,7 @@ import (
 	"groovy/internal/data"
 	"groovy/internal/jsonlog"
 	"groovy/internal/mailer"
+	"groovy/internal/vcs"
 	"os"
 	"path/filepath"
 	"runtime"
@@ -20,7 +21,9 @@ import (
 	_ "github.com/lib/pq"
 )
 
-const version = "1.0.0"
+var (
+	version = vcs.Version()
+)
 
 type config struct {
 	port int
