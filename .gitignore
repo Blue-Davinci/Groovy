@@ -1,0 +1,3 @@
+bin/
+cmd/api/.env
+cmd/api/*.exe
