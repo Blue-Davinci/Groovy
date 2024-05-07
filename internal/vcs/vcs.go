@@ -22,7 +22,7 @@ func Version() string {
 		}
 	}
 	if revision == "" {
-		revision = "dev version"
+		revision = "development version"
 	}
 	if modified {
 		return fmt.Sprintf("%s-dirty", revision)
