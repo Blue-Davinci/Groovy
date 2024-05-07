@@ -17,3 +17,4 @@ This document outlines the tasks and features that are planned or need to be imp
 ## General
 
 - **Code Quality:** Continually improve the quality of the code by refactoring where necessary, removing unused code, and adhering to best practices.
+- **Dockerization:** Containerize the API
