@@ -14,7 +14,8 @@ help:
 	@echo vendor             -  tidy and vendor dependencies
 	@echo build/api          -  build the cmd/api application
 
-## confirm: create the new confirm target.
+## confirm: create the new confirm prompt from confirm.ps1.
+## if on linux you can use https://stackoverflow.com/questions/47837071/making-make-clean-ask-for-confirmation
 .PHONY: confirm
 confirm:
 	powershell -File confirm.ps1
@@ -23,7 +24,8 @@ confirm:
 # DEVELOPMENT																		   #
 # ==================================================================================== #
 
-# run/api: run the api
+# run/api: run the api with the default DSN pruned from .env file,
+# you can import the file directly or use ps script to load it before running
 .PHONY: run/api
 run/api:
 	@go run ./cmd/api -db-dsn=${GROOVY_DB_DSN} 
@@ -39,7 +41,7 @@ db/migrations/new:
 	@echo Creating migration files for ${name}...
 	migrate create -seq -ext .sql -dir=./migrations ${name}
 
-# db/migrations/up: run the up migrations using confirm as prerequisite
+# db/migrations/up: run the up migrations using confirm from confirm.p1 as prereq
 .PHONY: db/migrations/up
 db/migrations/up: confirm
 	@echo Running up migrations...

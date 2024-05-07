@@ -3,20 +3,20 @@
  <img width=200px height=200px src="https://i.imgur.com/6wj0hh6.jpg" alt="Project logo"></a>
 </p>
 
-<h3 align="center">Project Title</h3>
+<h3 align="center">Groovy API</h3>
 
 <div align="center">
 
 [![Status](https://img.shields.io/badge/status-active-success.svg)]()
-[![GitHub Issues](https://img.shields.io/github/issues/kylelobo/The-Documentation-Compendium.svg)](https://github.com/kylelobo/The-Documentation-Compendium/issues)
-[![GitHub Pull Requests](https://img.shields.io/github/issues-pr/kylelobo/The-Documentation-Compendium.svg)](https://github.com/kylelobo/The-Documentation-Compendium/pulls)
+[![GitHub Issues](https://img.shields.io/github/issues/Blue-Davinci/groovy.svg)](https://github.com/Blue-Davinci/groovy/issues)
+[![GitHub Pull Requests](https://img.shields.io/github/issues-pr/kylelobo/The-Documentation-Compendium.svg)](https://github.com/Blue-Davinci/groovy/pulls)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](/LICENSE)
 
 </div>
 
 ---
 
-<p align="center"> Few lines describing your project.
+<p align="center"> A GOLANG BACK END CODE FOR THE GROOVY API.
     <br> 
 </p>
 
@@ -28,8 +28,7 @@
 - [Usage](#usage)
 - [Built Using](#built_using)
 - [API Endpoints](#endpoints)
-- [TODO](../TODO.md)
-- [Contributing](../CONTRIBUTING.md)
+- [TODO](./TODO.md)
 - [Authors](#authors)
 - [Acknowledgments](#acknowledgement)
 
@@ -91,7 +90,7 @@ Before you can run or contribute to this project, you'll need to have the follow
 7. **Run the project:** Instead of using `go run`, you can use the `make` command with the `run/api` target to run the project:
 
     ```bash
-  make run/api
+    make run/api
     ```
 8. For additional supported commands run `make help`:
 
@@ -187,11 +186,11 @@ FAIL    groovy/cmd/api  0.398s
 
 ## 🎈 Usage <a name="usage"></a>
 
-Add notes about how to use the system.
+{to add}
 
 ## 🚀 Deployment <a name = "deployment"></a>
 
-Add additional notes about how to deploy this on a live system.
+{to add}
 
 ## ⛏️ Built Using <a name = "built_using"></a>
 
@@ -204,7 +203,7 @@ Add additional notes about how to deploy this on a live system.
 
 ## ✍️ Authors <a name = "authors"></a>
 
-- [@blue-davinci](https://github.com/blue-davinci) - Entire project work
+- [@blue-davinci](https://github.com/blue-davinci) - The Groovy API
 
 
 ## 🎉 Acknowledgements <a name = "acknowledgement"></a>
