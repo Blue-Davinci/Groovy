@@ -3,8 +3,7 @@
 This document outlines the tasks and features that are planned or need to be implemented in the project.
 
 ## Frontend
-- **Improve User Interface:** The current frontend is functional but could benefit from a more modern and user-friendly design. This could include better form validation, more intuitive navigation, and a more visually appealing color scheme and layout.
-- **Responsive Design:** Ensure the frontend is fully responsive and provides a good user experience on all devices, including mobile phones and tablets.
+- **Improve User Interface:** A cuurently minimal frontend. Will develop a better frontend to sought of interact with our API.
 
 ## Backend
 - **Testing:** Implement more comprehensive tests for the backend including unit tests, integration tests, and end-to-end tests.
