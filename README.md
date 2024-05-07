@@ -103,7 +103,7 @@ Before you can run or contribute to this project, you'll need to have the follow
 The application accepts command-line flags for configuration, establishes a connection pool to a database, and publishes variables for monitoring the application. The published variables include the application version, the number of active goroutines, database connection pool statistics, and the current Unix timestamp.
     This will start the application. You should be able to access it at `http://localhost:4000`.
 
-## Optional Parameters
+## Optional Parameters <a name = "optpars"></a>
 You can view the **parameters** by utilizing the `-help` command. Here is a rundown of 
 the available commands for a quick lookup.
 - **smtp-sender:** Sets the sender for SMTP (email) communications. Default: "Groovy <no-reply@groovy.com>".
@@ -197,7 +197,7 @@ This application can be deployed using Docker and Docker Compose. Here are the s
 2. **Run the Docker Compose services**: Run `docker-compose up` while in the root dir.
 
 If you want to run the services in the background, you can use the `-d` option: `docker-compose up -d`.
-Please remember you can use flags, mentioned [here](#deployment) while running the api by setting them in
+Please remember you can use flags, mentioned [here](#optpars) while running the api by setting them in
 the `Dockerfile` like so:
 ```
 CMD ["./bin/api.exe", "-smtp-username", "smtp username", "-port", "your_port", "-smtp-password", "your_smtp_pass"]
