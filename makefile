@@ -11,6 +11,8 @@ help:
 	@echo db/psql            -  connect to the db using psql
 	@echo db/migrations/new  -  create a new migration with the name passed as an argument
 	@echo db/migrations/up   -  run the up migrations using confirm as prerequisite
+	@echo vendor             -  tidy and vendor dependencies
+	@echo build/api          -  build the cmd/api application
 
 ## confirm: create the new confirm target.
 .PHONY: confirm
@@ -50,9 +52,6 @@ db/migrations/up: confirm
 ## audit: tidy dependencies and format, vet and test all code
 .PHONY: audit
 audit:
-	@echo 'Tidying and verifying module dependencies...'
-	go mod tidy
-	go mod verify
 	@echo 'Formatting code...'
 	go fmt ./...
 	@echo 'Vetting code...'
@@ -60,3 +59,23 @@ audit:
 	staticcheck ./...
 	@echo 'Running tests...'
 	go test -race -vet=off ./...
+
+## vendor: tidy and vendor dependencies
+.PHONY: vendor
+vendor:
+	@echo 'Tidying and verifying module dependencies...'
+	go mod tidy
+	go mod verify
+	@echo 'Vendoring dependencies...'
+	go mod vendor
+
+# ==================================================================================== #
+# BUILD
+# ==================================================================================== #
+
+## build/api: build the cmd/api application
+.PHONY: build/api
+build/api:
+	@echo 'Building cmd/api...'
+	go build -ldflags '-s' -o ./bin/api.exe ./cmd/api
+## For linux: GOOS=linux GOARCH=amd64 go build -ldflags='-s' -o bin/linux_amd64_api ./cmd/api
