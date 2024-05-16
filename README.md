@@ -221,7 +221,6 @@ Please note that you need to have Docker and Docker Compose installed on your ma
 - [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) - Frontend structure
 - [Bootstrap](https://getbootstrap.com/) - Frontend design
 - [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) - Frontend behavior
-- [jQuery](https://jquery.com/) - JavaScript Library
 
 ## ✍️ Authors <a name = "authors"></a>
 
