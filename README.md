@@ -186,7 +186,14 @@ FAIL    groovy/cmd/api  0.398s
 
 ## 🎈 Usage <a name="usage"></a>
 
-{to add}
+Simply run using the app/main.go using any number of flags you desire like below:
+```
+make build/api
+./bin/api.exe -smtp-username=pigbearman -smtp-password=algor
+
+Direct Run: 
+go run main.go
+```
 
 ## 🚀 Deployment <a name = "deployment"></a>
 
