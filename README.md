@@ -72,7 +72,10 @@ Before you can run or contribute to this project, you'll need to have the follow
     go mod download
     ```
 
-4. **Set up the database:** The project uses a PostgreSQL database. You'll need to create a new database and update the connection string in your configuration file or environment variables. The exact steps to do this depend on your PostgreSQL setup.
+4. **Set up the database:** The project uses a PostgreSQL database. You'll need to create a new database and update the connection string in your configuration file or environment variables. The exact steps to do this depend on your PostgreSQL setup and can also be done via Migration files included in this repo via:
+````
+migrate -path=migrations -database=postgres://your_username:your_password@localhost/groovy?sslmode=disable up
+```
 
 5. **Build the project:** You can build the project using the `go build` command:
 
