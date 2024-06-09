@@ -38,6 +38,7 @@
   with a myriad of features including authentication, authorization, permisions, CORS and email capabilities.
 - The database at the heart of the application is POSTGRESQL and involves CRUD features for the entry, updating,
   deleting and reading of stored movie information which includes pagination, advanced searches and filtering.
+- Introducing the sister project for this, the [Groovy-Fronted](https://github.com/Blue-Davinci/Groovy-Frontend), fully powered by Svelte.
 
 ## 🏁 Getting Started <a name = "getting_started"></a>
 
@@ -73,7 +74,7 @@ Before you can run or contribute to this project, you'll need to have the follow
     ```
 
 4. **Set up the database:** The project uses a PostgreSQL database. You'll need to create a new database and update the connection string in your configuration file or environment variables. The exact steps to do this depend on your PostgreSQL setup and can also be done via Migration files included in this repo via:
-````
+```
 migrate -path=migrations -database=postgres://your_username:your_password@localhost/groovy?sslmode=disable up
 ```
 
@@ -107,6 +108,7 @@ The application accepts command-line flags for configuration, establishes a conn
     This will start the application. You should be able to access it at `http://localhost:4000`.
 
 ## Optional Parameters <a name = "optpars"></a>
+
 You can view the **parameters** by utilizing the `-help` command. Here is a rundown of 
 the available commands for a quick lookup.
 - **smtp-sender:** Sets the sender for SMTP (email) communications. Default: "Groovy <no-reply@groovy.com>".
