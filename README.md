@@ -223,8 +223,7 @@ Please note that you need to have Docker and Docker Compose installed on your ma
 
 - [PostgreSQL](https://www.postgresql.org/) - Database
 - [Go](https://golang.org/) - Backend
-- [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) - Frontend structure
-- [Bootstrap](https://getbootstrap.com/) - Frontend design
+- [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) - Email Template
 - [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) - Frontend behavior
 
 ## ✍️ Authors <a name = "authors"></a>
