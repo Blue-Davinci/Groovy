@@ -28,7 +28,7 @@ confirm:
 # you can import the file directly or use ps script to load it before running
 .PHONY: run/api
 run/api:
-	@go run ./cmd/api -db-dsn=${GROOVY_DB_DSN} 
+	@go run ./cmd/api  
 
 # db/psql: connect to the db using psql
 .PHONY: db/psql

@@ -11,10 +11,12 @@ import (
 // Add a createMovieHandler for the "POST /v1/movies" endpoint.
 func (app *application) createMovieHandler(w http.ResponseWriter, r *http.Request) {
 	var input struct {
-		Title   string       `json:"title"`
-		Year    int32        `json:"year"`
-		Runtime data.Runtime `json:"runtime"`
-		Genres  []string     `json:"genres"`
+		Title       string       `json:"title"`
+		Year        int32        `json:"year"`
+		Runtime     data.Runtime `json:"runtime"`
+		Genres      []string     `json:"genres"`
+		Description string       `json:"description"`
+		URL         string       `json:"url"`
 	}
 	err := app.readJSON(w, r, &input)
 	if err != nil {
@@ -23,10 +25,12 @@ func (app *application) createMovieHandler(w http.ResponseWriter, r *http.Reques
 	}
 	// Copy the values from the input struct to a new Movie struct.
 	movie := &data.Movie{
-		Title:   input.Title,
-		Year:    input.Year,
-		Runtime: input.Runtime,
-		Genres:  input.Genres,
+		Title:       input.Title,
+		Year:        input.Year,
+		Runtime:     input.Runtime,
+		Genres:      input.Genres,
+		Description: input.Description,
+		URL:         input.URL,
 	}
 	// Initialize a new Validator.
 	v := validator.New()
@@ -115,10 +119,12 @@ func (app *application) updateMovieHandler(w http.ResponseWriter, r *http.Reques
 	}
 	// Declare an input struct to hold the expected data from the client.
 	var input struct {
-		Title   *string       `json:"title"`
-		Year    *int32        `json:"year"`
-		Runtime *data.Runtime `json:"runtime"`
-		Genres  []string      `json:"genres"`
+		Title       *string       `json:"title"`
+		Year        *int32        `json:"year"`
+		Runtime     *data.Runtime `json:"runtime"`
+		Genres      []string      `json:"genres"`
+		Description *string       `json:"description"`
+		URL         *string       `json:"url"`
 	}
 	// Read the JSON request body data into the input struct.
 	err = app.readJSON(w, r, &input)
@@ -144,6 +150,12 @@ func (app *application) updateMovieHandler(w http.ResponseWriter, r *http.Reques
 	}
 	if input.Genres != nil {
 		movie.Genres = input.Genres
+	}
+	if input.Description != nil {
+		movie.Description = *input.Description
+	}
+	if input.URL != nil {
+		movie.URL = *input.URL
 	}
 
 	// Validate the updated movie record, sending the client a 422 Unprocessable Entity
@@ -217,7 +229,7 @@ func (app *application) listMoviesHandler(w http.ResponseWriter, r *http.Request
 	// Get the page and page_size query string values as integers.
 	// Read the page and page_size query string values into the embedded struct.
 	input.Filters.Page = app.readInt(qs, "page", 1, v)
-	input.Filters.PageSize = app.readInt(qs, "page_size", 20, v)
+	input.Filters.PageSize = app.readInt(qs, "page_size", 30, v)
 
 	// Extract the sort query string value, falling back to "id" if it is not provided
 	// by the client (which will imply a ascending sort on movie ID).

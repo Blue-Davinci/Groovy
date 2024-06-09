@@ -6,19 +6,23 @@ import (
 	"errors"
 	"fmt"
 	"groovy/internal/validator"
+	"net/url"
+	"strings"
 	"time"
 
 	"github.com/lib/pq"
 )
 
 type Movie struct {
-	ID        int64     `json:"id"`
-	CreatedAt time.Time `json:"-"`
-	Title     string    `json:"title"`
-	Year      int32     `json:"year,omitempty"`
-	Runtime   Runtime   `json:"runtime,omitempty"`
-	Genres    []string  `json:"genres,omitempty"`
-	Version   int32     `json:"version"`
+	ID          int64     `json:"id"`
+	CreatedAt   time.Time `json:"-"`
+	Title       string    `json:"title"`
+	Year        int32     `json:"year,omitempty"`
+	Runtime     Runtime   `json:"runtime,omitempty"`
+	Genres      []string  `json:"genres,omitempty"`
+	Description string    `json:"description,omitempty"`
+	URL         string    `json:"url,omitempty"`
+	Version     int32     `json:"version"`
 }
 
 func ValidateMovie(v *validator.Validator, movie *Movie) {
@@ -33,6 +37,12 @@ func ValidateMovie(v *validator.Validator, movie *Movie) {
 	v.Check(len(movie.Genres) >= 1, "genres", "must contain at least 1 genre")
 	v.Check(len(movie.Genres) <= 5, "genres", "must not contain more than 5 genres")
 	v.Check(validator.Unique(movie.Genres), "genres", "must not contain duplicate values")
+	v.Check(movie.Description != "", "description", "must be provided")
+	v.Check(len(movie.Description) <= 1000, "description", "must not be more than 1000 bytes long")
+	v.Check(movie.URL != "", "url", "must be provided")
+	v.Check(validateUrl(movie.URL), "url", "must be a valid URL")
+	v.Check(strings.Contains(movie.URL, "themoviedb.org"), "url", "image URL must be from www.themoviedb.org")
+	v.Check(strings.Contains(movie.URL, "original"), "url", "please use an original image for better quality (hint: should look like '...org/t/p/original...')")
 }
 
 // Define a MovieModel struct type which wraps a sql.DB connection pool.
@@ -45,12 +55,12 @@ func (m MovieModel) Insert(movie *Movie) error {
 	// Define the SQL query for inserting a new record in the movies table and returning
 	// the system-generated data.
 	query := `
-	INSERT INTO movies (title, year, runtime, genres)
-	VALUES ($1, $2, $3, $4)
+	INSERT INTO movies (title, year, runtime, genres, description, url)
+	VALUES ($1, $2, $3, $4, $5, $6)
 	RETURNING id, created_at, version`
 	// Create an args slice containing the values for the placeholder parameters from
 	// the movie struct.
-	args := []any{movie.Title, movie.Year, movie.Runtime, pq.Array(movie.Genres)}
+	args := []any{movie.Title, movie.Year, movie.Runtime, pq.Array(movie.Genres), movie.Description, movie.URL}
 	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
 	defer cancel()
 
@@ -68,7 +78,7 @@ func (m MovieModel) Get(id int64) (*Movie, error) {
 	}
 	//pg_sleep(10)
 	query := `
-		SELECT id, created_at, title, year, runtime, genres, version
+		SELECT id, created_at, title, year, runtime, genres, version, description, url
 		FROM movies
 		WHERE id = $1`
 	var movie Movie
@@ -87,6 +97,8 @@ func (m MovieModel) Get(id int64) (*Movie, error) {
 		&movie.Runtime,
 		pq.Array(&movie.Genres),
 		&movie.Version,
+		&movie.Description,
+		&movie.URL,
 	)
 	if err != nil {
 		switch {
@@ -105,8 +117,8 @@ func (m MovieModel) Update(movie *Movie) error {
 	// number.
 	query := `
 	UPDATE movies
-	SET title = $1, year = $2, runtime = $3, genres = $4, version = version + 1
-	WHERE id = $5 AND version = $6
+	SET title = $1, year = $2, runtime = $3, genres = $4, version = version + 1, description = $5, url = $6
+	WHERE id = $7 AND version = $8
 	RETURNING version`
 	// Create an args slice containing the values for the placeholder parameters.
 	args := []any{
@@ -114,6 +126,8 @@ func (m MovieModel) Update(movie *Movie) error {
 		movie.Year,
 		movie.Runtime,
 		pq.Array(movie.Genres),
+		movie.Description,
+		movie.URL,
 		movie.ID,
 		movie.Version,
 	}
@@ -177,7 +191,7 @@ func (m MovieModel) GetAll(title string, genres []string, filters Filters) ([]*M
 	// notice that we also include a secondary sort on the movie ID to ensure a
 	// consistent ordering.
 	query := fmt.Sprintf(`
-	SELECT count(*) OVER(), id, created_at, title, year, runtime, genres, version
+	SELECT count(*) OVER(), id, created_at, title, year, runtime, genres, version, description, url
 	FROM movies
 	WHERE (to_tsvector('simple', title) @@ plainto_tsquery('simple', $1) OR $1 = '')
 	AND (genres @> $2 OR $2 = '{}')
@@ -216,6 +230,8 @@ func (m MovieModel) GetAll(title string, genres []string, filters Filters) ([]*M
 			&movie.Runtime,
 			pq.Array(&movie.Genres),
 			&movie.Version,
+			&movie.Description,
+			&movie.URL,
 		)
 		if err != nil {
 			return nil, Metadata{}, err
@@ -234,4 +250,11 @@ func (m MovieModel) GetAll(title string, genres []string, filters Filters) ([]*M
 
 	// If everything went OK, then return the slice of movies.
 	return movies, metadata, nil
+}
+
+// The urlVerifier() helper function accepts a URL as a string and returns a boolean
+// based on whether the URL is valid or not.
+func validateUrl(urlstr string) bool {
+	u, err := url.Parse(urlstr)
+	return err == nil && u.Scheme != "" && u.Host != ""
 }

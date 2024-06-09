@@ -93,8 +93,8 @@ func main() {
 	// Read the SMTP server configuration settings into the config struct, using the.
 	flag.StringVar(&cfg.smtp.host, "smtp-host", "sandbox.smtp.mailtrap.io", "SMTP host")
 	flag.IntVar(&cfg.smtp.port, "smtp-port", 2525, "SMTP port")
-	flag.StringVar(&cfg.smtp.username, "smtp-username", "skunkhunt42", "SMTP username")
-	flag.StringVar(&cfg.smtp.password, "smtp-password", "ManBearPig", "SMTP password")
+	flag.StringVar(&cfg.smtp.username, "smtp-username", "{skunkhunt42}", "SMTP username")
+	flag.StringVar(&cfg.smtp.password, "smtp-password", "{ManBearPig}", "SMTP password")
 	flag.StringVar(&cfg.smtp.sender, "smtp-sender", "Groovy <no-reply@groovy.com>", "SMTP sender")
 	// Use the flag.Func() function to process the -cors-trusted-origins command line
 	// flag. In this we use the strings.Fields() function to split the flag value into a
