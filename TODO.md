@@ -11,6 +11,7 @@ This document outlines the tasks and features that are planned or need to be imp
 - **Add Password Reset:** Add a way for users to reset their passwords. Currently working on it.
 
 ## General
-- **Code Quality:** Continually improve the quality of the code by refactoring where necessary, removing unused code, and adhering to best practices.
 - ~~**Dockerization:** Containerize the API~~
 - Add flags for the frontend API route
+- Password reset - Currently adding.
+- Re-activating - Currently adding.
