@@ -128,6 +128,9 @@ the available commands for a quick lookup.
 - **smtp-port [int]:** SMTP port (default 25)
 - **smtp-sender [string]:** SMTP sender (default "Groovy <no-reply@groovy.com>")
 - **smtp-username [string]:** SMTP username (default "skunkhunt42")
+- **baseurl [string]:** frontend url (default "http://localhost:5173")
+- **activationurl [string]:** frontend activation url (default "http://localhost:5173/verify?token=")
+- **passwordreseturl:** frontend password reset url (default "http://localhost:5173/reset?token=")
 
 Using `make run`, will run the API with a default connection string: `-db-dsn=${GROOVY_DB_DSN}` located 
 in `cmd\api\.env`. If you're using powershell, you need to load the values otherwise you will get
