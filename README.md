@@ -173,6 +173,12 @@ Below are all the end points for the API and a high level description of what th
 
 - **GET /debug/vars:** Provides debug variables from the `expvar` package.
 
+- **PUT /v1/users/password:** Accepts a user's new password
+
+- **POST /v1/tokens/password-reset:** Sends a token to the user for password reset requests
+
+- **POST /v1/tokens/activation:** Manual token sending for unregistered users incase of emeail failures/ token expiry.
+
 
 ## 🔧 Running the tests <a name = "tests"></a>
 
