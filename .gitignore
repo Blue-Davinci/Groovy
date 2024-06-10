@@ -1,3 +1,5 @@
+.vscode/
+internal/mailer/templates/examples
 bin/
 /cmd/api/.env
 /cmd/api/*.exe

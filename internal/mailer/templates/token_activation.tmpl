@@ -1,13 +1,9 @@
-{{define "subject"}}Welcome to Groovy!{{ end }}
+{{define "subject"}}Activate your Groovy account{{ end }}
 {{define "plainBody"}}
-Hi, Thanks for signing up for a Groovy account. We're excited to have you on
-board! For future reference, your user ID number is {{.userID}}. Please send a
-request to the `PUT /v1/users/activated` endpoint with the following JSON body
-to activate your account: {"token": "{{.activationToken}}"} Or use the following
-to activate your account:
-{{.activationURL}}
-Please note that this is a one-time use token and it will expire in 3 days.
-Thanks, The Groovy Team
+Hi, Please send a `PUT /v1/users/activated` request with the following JSON body
+to activate your account: {"token": "{{.activationToken}}"} Please note that
+this is a one-time use token and it will expire in 3 days. Thanks, The
+Greenlight Team
 {{ end }}
 {{define "htmlBody"}}
 <!DOCTYPE html>
@@ -95,39 +91,30 @@ Thanks, The Groovy Team
       }
     </style>
   </head>
-
   <body>
     <div class="container">
       <div class="title">
         <img src="https://i.ibb.co/xszwyDJ/favicon.png" alt="Groovy Logo" />
-        <h2>Welcome to Groovy!</h2>
+        <h2>You have requested a reset token</h2>
       </div>
-      <hr />
       <p>Hello,</p>
       <p>
-        Thanks for signing up for a Groovy account. We're excited to have you on
-        board!
-      </p>
-      <p>
-        For future reference, your user ID number is <strong>{{.userID}}</strong
-        >.
-      </p>
-      <p>
-        Please send a request to the
-        <code>PUT /v1/users/activated</code> endpoint with the following JSON
-        body to activate your account:
+        Please send a <code>PUT /v1/users/activated</code> request with the
+        following JSON body to activate your account:
       </p>
       <pre><code>
-        {"token": "{{.activationToken}}"}
+            {"token": "{{.activationToken}}"}
         </code></pre>
-      <p>Or use the following to activate your account:</p>
-      <a href="{{.activationURL}}" class="button">Activate Account</a>
+
+      <p>Or use the following to reset your password:</p>
+      <a href="{{.passwordResetURL}}" class="button">Reset Password</a>
       <p>
-        Please note that this is a <strong>one-time</strong> use token and it
-        will expire in <strong>3 days.</strong>
+        Please note that this is a one-time use token and it will expire in 3
+        days.
       </p>
       <p>Thanks,</p>
       <p>The Groovy Team</p>
+      <hr />
       <!----------------------- Footer ----------------------------------->
       <div class="footer">
         <p>The Groovy Project, 6969 Street</p>
