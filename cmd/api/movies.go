@@ -217,6 +217,7 @@ func (app *application) listMoviesHandler(w http.ResponseWriter, r *http.Request
 		Genres []string
 		data.Filters
 	}
+	fmt.Println("In List Movies")
 	// Initialize a new Validator instance.
 	v := validator.New()
 	// Call r.URL.Query() to get the url.Values map containing the query string data.

@@ -13,4 +13,4 @@ This document outlines the tasks and features that are planned or need to be imp
 ## General
 - ~~Dockerization: Containerize the API~~
 - ~~Add flags for the frontend API route~~
-- Re-activating - Currently adding.
+- ~~Re-activating - Currently adding.~~

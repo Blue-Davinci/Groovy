@@ -197,11 +197,11 @@ func (m MovieModel) GetAll(title string, genres []string, filters Filters) ([]*M
 	AND (genres @> $2 OR $2 = '{}')
 	ORDER BY %s %s, id ASC
 	LIMIT $3 OFFSET $4`, filters.sortColumn(), filters.sortDirection())
-
 	// Create a context with a 3-second timeout.
 	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
 	defer cancel()
 	args := []any{title, pq.Array(genres), filters.limit(), filters.offset()}
+	fmt.Println("Page and Page Size: ", filters.limit(), filters.offset())
 	// Use QueryContext() to execute the query. This returns a sql.Rows resultset
 	// containing the result.
 	rows, err := m.DB.QueryContext(ctx, query, args...)
